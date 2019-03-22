@@ -11,19 +11,19 @@ const config = require('./config');
 const ServerFunctionality = require('./server');
 
 // Get Https Certificate stuff
-let certificate = fs.readFileSync('./https/cert.pem', "utf8");
-let key = fs.readFileSync('./https/key.pem', "utf8");
+let cert = fs.readFileSync('./https/cert.pem');
+let key = fs.readFileSync('./https/key.pem');
 
 // HTTPS SERVER OPTIONS
 httpsServerOptions = {
     key,
-    certificate
+    cert
 }
 
 // Create the HTTP Server
-let httpServer = http.createServer(ServerFunctionality)
+let httpServer = http.createServer((req,res) => ServerFunctionality(req,res,'HTTP'))
 // Create the HTTPS Server
-let httpsServer = https.createServer(httpsServerOptions, ServerFunctionality)
+let httpsServer = https.createServer(httpsServerOptions, (req,res) => ServerFunctionality(req,res,'HTTPS'))
 
 // Tell the servers to listen
 httpServer.listen(config.port, () => {

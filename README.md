@@ -1,2 +1,2 @@
-# nodejs-masterclass-homework
-### [Homework 1: Basic REST API](hw1.md)
+# NodeJS-Masterclass-Homework
+### [Homework 1: Basic REST API](hw1/HW1.md)

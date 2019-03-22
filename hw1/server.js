@@ -2,7 +2,7 @@ const url = require('url');
 const string_decoder = require('string_decoder').StringDecoder;
 
 
-module.exports = (req, res) => {
+module.exports = (req, res, serverType) => {
     // Get the URL and parse it
     let parsedURL = url.parse(req.url, true);
 
@@ -34,7 +34,8 @@ module.exports = (req, res) => {
             queryObject,
             method,
             headers,
-            payload: buffer
+            payload: buffer,
+            serverType
         }
         // ROUTE THE REQUEST
         chosenHandler(data, (statusCode = 200, payload = {}) => {
@@ -53,10 +54,10 @@ module.exports = (req, res) => {
 }
 // REQUEST HANDLER
 let handlers = {}
-handlers.sample = (data, cb) => {
-    // Callback a status code and a payload object
-    cb(406, {
-        name: 'sample handler'
+
+handlers.hello = ( { serverType }, cb) => {
+    cb(200,{
+        message: `The ${serverType} Server Says Hello!`
     })
 }
 handlers.notFound = (data, cb) => {
@@ -65,5 +66,5 @@ handlers.notFound = (data, cb) => {
 
 // Router
 let router = {
-    'sample': handlers.sample
+    'hello': handlers.hello
 }

@@ -1,3 +1,11 @@
+/*
+*-----------------------------------------------*
+*   This file contains our actual server logic. *
+*   It is required and implemented by index.js  *
+*-----------------------------------------------*
+*/
+
+
 const url = require('url');
 const string_decoder = require('string_decoder').StringDecoder;
 

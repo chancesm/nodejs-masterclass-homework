@@ -30,7 +30,7 @@ The only defined endpoint is listed below:
 ```json
 (200)
 {
-    "message": 'The [SERVER_TYPE] Server Says Hello!'
+    "message": "The [SERVER_TYPE] Server Says Hello!"
 }
 ```
 
